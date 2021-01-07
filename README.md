@@ -5,7 +5,7 @@ Jest to proste API sklepu robione według wzoru z zajęć
 ## Spis treści
 * [Technologie](#technologie)
 * [Instalacja](#instalacja)
-* [Połączenie z DB](#połączenie-z-db)
+* [Połączenie z bazą danych](#połączenie-z-bazą-danych)
 
 	
 ## Technologie
