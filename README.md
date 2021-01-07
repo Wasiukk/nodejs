@@ -1,8 +1,11 @@
 # Zaawansowane programowanie w języku JavaScript
 Projekt na zaliczenie przedmiotu, Krystian Wasiuk nr. albumu 46362.
 Jest to proste API sklepu robione według wzoru z zajęć
+
+## Spis treści
 * [Technologie](#technologie)
 * [Instalacja](#instalacja)
+* [Połączenie z DB](#połączenie-z-db)
 
 	
 ## Technologie
@@ -37,6 +40,19 @@ npm i --save bcrypt
 npm i --save jsonwebtoken
 npm i --save body-parser
 ```
+
+## Połączenie z bazą danych
+Połączenie umieszczone jest w pliku _app.js_
+```
+mongoose.connect(
+  'mongodb+srv://user:' +
+    process.env.ATLAS_PWD +
+    '@mbo.ns57q.mongodb.net/sklep?retryWrites=true&w=majority',
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
+);
+```
+``` process.env.ATLAS_PWD ``` umieszczone jest w pliku _nodemon.json_
+
 
 ## Status
 Projekt jest na ten moment skończony i gotowy do użycia
