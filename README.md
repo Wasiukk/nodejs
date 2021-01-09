@@ -8,7 +8,9 @@ Jest to proste API sklepu robione według wzoru z zajęć
 * [Połączenie z bazą danych](#połączenie-z-bazą-danych)
 * [Serwer](#serwer)
 * [Autentykacja](#autentykacja)
+* [Kontrolery](#kontrolery)
 * [Użytkownicy](#użytkownicy)
+* [Produkty](#produkty)
 * [Status](#status)
 
 ## Technologie
@@ -76,6 +78,23 @@ module.exports = (req, res, next) => {
   }
 };
 ```
+
+## Kontrolery
+W pliku _controllers/products.js_ znajdują się definicje funkcji dla produktów, poprawia to czytelność kodu oraz ułatwia edycję produktów. Przykładowy kontroler zwracający listę produktów:
+```
+exports.get_all_products = (req, res, next) => {
+  Product.find()
+    .exec()
+    .then((docs) => {
+      res.status(200).json({
+        wiadomosc: 'Lista wszystkich produktów',
+        szczegoly: docs,
+      });
+    })
+    .catch((err) => res.status(500).json({ error: err }));
+};
+```
+
 
 ## Użytkownicy
 W pliku _users.js_ importowany jest model użytkownika ``` const User = require('../models/user'); ```, aby za jego pomocą można było się logować: 
@@ -155,6 +174,28 @@ router.delete('/:userId', (req, res, next) => {
     .catch((err) => res.status(500).json({ error: err }));
 });
 ```
+
+## Produkty
+Model produktu znajduje się w _models/products.js_ :
+```
+const productSchema = mongoose.Schema({
+  _id: mongoose.Types.ObjectId,
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  productImage: {
+    type: String,
+    required: true,
+  },
+});
+```
+funkcje wykorzystujące ten model znajdują się w _routes/products.js_ a ich definicje w [kontrolerach](#kontrolery).
 
 ## Status
 Projekt jest na ten moment skończony i gotowy do użycia
