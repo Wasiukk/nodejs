@@ -11,6 +11,7 @@ Jest to proste API sklepu robione według wzoru z zajęć
 * [Kontrolery](#kontrolery)
 * [Użytkownicy](#użytkownicy)
 * [Produkty](#produkty)
+* [Szyfrowanie](#szyfrowanie)
 * [Status](#status)
 
 ## Technologie
@@ -196,6 +197,12 @@ const productSchema = mongoose.Schema({
 });
 ```
 funkcje wykorzystujące ten model znajdują się w _routes/products.js_ a ich definicje w [kontrolerach](#kontrolery).
+
+## Szyfrowanie 
+Szyfrowanie hasła wykorzystane jest w pliku _routes/user.js_, definiowane w linijce: `const bcrypt = require('bcrypt');`
+Samo szyfrowanie odbywa się w funkcji `bcrypt.hash(req.body.password, 10, (err, hash) => {`, a przy logowaniu: `bcrypt
+        .compare(req.body.password, user.password)
+        .then((result) =>`.
 
 ## Status
 Projekt jest na ten moment skończony i gotowy do użycia
